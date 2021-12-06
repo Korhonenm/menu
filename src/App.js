@@ -1,23 +1,28 @@
-import logo from './logo.svg';
+import React, {useState} from 'react';
 import './App.css';
+import Home from './components/Home';
+import Todo from './components/Todo';
+import Tabs from'@mui/material/Tabs';
+import Tab  from'@mui/material/Tab';
+
 
 function App() {
+  const[value, setValue] = useState(0);
+  
+  const handleChange= (event, value) => 
+   {setValue(value);
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Tabs value={value} onChange={handleChange}>
+        <Tab label="Home" />
+        <Tab label="Todo"/>
+      </ Tabs>
+      {value=== 0 && <Home/>}
+      {value=== 1 &&<Todo/>}
+      
+      
     </div>
   );
 }
